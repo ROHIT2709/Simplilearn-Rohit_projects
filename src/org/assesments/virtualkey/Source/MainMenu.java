@@ -2,6 +2,7 @@ package org.assesments.virtualkey.Source;
 
 //import javax.swing.*;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -24,13 +25,35 @@ public class MainMenu {
         Select();
     }
 
+
+    public int userInput(){
+
+        String choice = sc.next();
+        try
+        {
+            int x = Integer.parseInt(choice);
+            return x;
+        }
+        catch (Exception e){
+            return  -1;
+        }
+
+
+    }
     private void Select() {
-        int choice = sc.nextInt();
-        switch(choice){
+        try{
+            System.out.println("Enter your choice: ");
+           int choice = userInput();
+            if(choice==-1)
+                choice=4;
+
+
+
+        switch(choice) {
             case 1:
-               fo.ShowFiles();
+                fo.ShowFiles();
                 options();
-               break;
+                break;
             case 2:
                 fo.Display();
                 options();
@@ -40,13 +63,22 @@ public class MainMenu {
                 break;
             default:
                 System.out.println("Enter a valid options");
+                options();
+        }
+
+        }
+        catch(Exception E){
+            System.out.println("Enter a numberic number ");
+            sc.close();
+
+        }
 
 
 
         }
 
 
-    }
+
 
 
     public static void main(String[] args) {

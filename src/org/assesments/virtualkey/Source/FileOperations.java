@@ -14,6 +14,20 @@ public class FileOperations implements Selections {
 
 
     private FolderPathAndOperations Directory = new FolderPathAndOperations();
+    public int userInput(){
+
+        String choice = sc.next();
+        try
+        {
+            int x = Integer.parseInt(choice);
+            return x;
+        }
+        catch (Exception e){
+            return  -1;
+        }
+
+
+    }
 
     @Override
     public void Display() {
@@ -22,7 +36,7 @@ public class FileOperations implements Selections {
         System.out.println("3 -> Search A File");
         System.out.println("4 -> Revert to options");
         System.out.println("Enter your option");
-        int n = sc.nextInt();
+        int n = userInput();
         Choices(n);
 
 
@@ -31,36 +45,43 @@ public class FileOperations implements Selections {
 
     @Override
     public void Choices(int option) {
+ try {
+ if(option==-1)
+     option=5;
+     switch (option) {
+
+         case 1:
+             this.Add();
+
+             this.Display();
+             break;
+         case 2:
+             this.Delete();
+
+             this.Display();
+             break;
+         case 3:
+             this.Search();
+             this.Display();
+             break;
 
 
-        switch (option) {
+         case 4:
+             // m.options();
+             break;
 
-            case 1:
-                this.Add();
-
-                this.Display();
-                break;
-            case 2:
-                this.Delete();
-
-                this.Display();
-                break;
-            case 3:
-                this.Search();
-                this.Display();
-                break;
+         default:
+             System.out.println("Invalid Option");
+             this.Display();
+             break;
 
 
-            case 4:
-                // m.options();
-                break;
-
-            default:
-                System.out.println("Invalid Option");
-                break;
-
-
-        }
+     }
+ }
+ catch(Exception e){
+     System.out.println("enter a valid option in numberics ");
+     this.Display();
+ }
 
     }
 
